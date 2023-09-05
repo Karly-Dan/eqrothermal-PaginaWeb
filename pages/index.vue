@@ -223,6 +223,7 @@ body {
   color: #181E52;
   font-weight: bold;
   font-family: roboto;
+  text-align: center;
 }
 .subtitulo {
   color:#3E3E3E;
@@ -231,7 +232,7 @@ body {
   border-radius: 5px;
   position: relative;
   height: 192px;
-  margin-bottom: 40px;
+  margin-bottom: 65px;
 }
 .nombre-servicio {
   position: absolute;
@@ -288,6 +289,9 @@ body {
   display: grid;
   margin-left: 21px;
 }
+.imagen-servicios {
+  width: 170px;
+}
 @media (min-width: 768px) and (max-width: 1023px) {
   .contenedor-boton {
     text-align: center;
@@ -340,6 +344,15 @@ body {
   .icono-contacto {
     margin-right: 5px;
     margin-left: 0px;
+  }
+  .carta {
+    margin-bottom: 158px;
+  }
+  .imagen-servicios {
+    width: 240px;
+  }
+  .contenedor-servicios {
+    padding: 50px;
   }
   
 }
