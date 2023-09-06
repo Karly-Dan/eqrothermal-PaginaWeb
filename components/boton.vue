@@ -1,13 +1,14 @@
 <template>
   <div class="contenedor-boton">
-    <button >Enviar</button>
+    <button>Enviar</button>
   </div>
 </template>
 
 <script>
 export default {
-
+  
 }
+
 </script>
 
 <style>
