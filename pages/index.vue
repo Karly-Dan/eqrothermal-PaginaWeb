@@ -59,8 +59,8 @@
           <div class="carta">
             <img src="../assets/nitrurado.png" class="imagen-servicios">
             <p class="nombre-servicio">Nitrurado y Carbonizado</p>
-            <div class="enero">
-              <p>Proximamente Enero 2024</p>
+            <div class="contenedor-proximo">
+              <p class="proximo">Proximamente Enero 2024</p>
             </div>
           </div>
         </div>
@@ -311,16 +311,19 @@ body {
   margin-left: 10px;
   margin-right: 20px;
 }
-.enero {
+.contenedor-proximo {
   background-color: green;
-  position: inherit;
-  width: 170.5px;
-  margin-top: -58px;
+  position: absolute;
+  bottom: -30px;
+  left: 0;
+  right: 0;
   border-radius: 3px;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
-.enero p {
+.proximo {
   color: white;
+  margin: 0;
+  padding: 5px;
 }
 .textarea {
   display: grid;
@@ -420,15 +423,17 @@ textarea {
   .texto-nosotros {
     width: 70%;
   }
-  .enero {
-    position: absolute;
-    width: 240.5px;
-    text-align: center;
-    margin-left: 32px;
-    margin-top: -55px;
+  .contenedor-proximo {
+    bottom: -92px;
+    left: 31px;
+    right: 32px;
   }
   .contenedor-boton {
     margin-top: 20px;
+  }
+  .proximo {
+    font-size: 17px;
+    padding: 10px;
   }
 }
 </style>
