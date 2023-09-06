@@ -1,7 +1,7 @@
 <template>
     <main>
         <div class="contenedor-header">
-            <div>
+            <div class="contenedor-imagen-header">
                 <img src="../assets/logost.png" alt="imagen" class="logo-header">
             </div>
         </div>
@@ -23,7 +23,12 @@ export default {
 .logo-header {
     width: 160px;
 }
-
+.contenedor-imagen-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+}
 @media (max-width: 776px) {
 
 }
@@ -37,10 +42,10 @@ export default {
 }
 @media (min-width: 1024px) {
     .contenedor-header {
-        display: flex;
-        justify-content: space-between;
         box-shadow: #EAEAEA;
+        height: 50px;
     }
+    
     
 }
 h1 {
