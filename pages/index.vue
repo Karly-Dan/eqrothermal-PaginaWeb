@@ -17,7 +17,6 @@
               <p>Ecológico con el medio ambiente.</p>
             </div>
           </div>
-          <boton-vue/>
         </div>
         <div>
           <img src="../assets/horno.jpeg" alt="img" class="imagen-nosotros">
@@ -60,6 +59,9 @@
           <div class="carta">
             <img src="../assets/nitrurado.png" class="imagen-servicios">
             <p class="nombre-servicio">Nitrurado y Carbonizado</p>
+            <div class="enero">
+              <p>Proximamente Enero 2024</p>
+            </div>
           </div>
         </div>
       </div>
@@ -72,20 +74,25 @@
           <input-vue
           titulo="Nombre:"
           placeholderInput="Ingresa tu nombre"
+          v-model="form.name"
           />
           <input-vue
           titulo="Correo:"
           placeholderInput="Ingresa tu correo electronico"
+          v-model="form.email"
           />
           <input-vue
           titulo="Telefono:"
           placeholderInput="Ingresa tu número telefónico"
+          v-model="form.phone"
           />
-          <input-vue
-          titulo="Mensaje:"
-          placeholderInput="Por favor ingresa un mensaje o las preguntas que desees que respondamos"
+          <div class="textarea">
+            <label for="">Mensaje</label>
+            <textarea name="" id="" cols="30" rows="10" v-model="form.message" placeholder="Por favor ingresa un mensaje o las preguntas que desees que respondamos"></textarea>
+          </div>
+          <boton-vue
+          @click="sendForm"
           />
-          <boton-vue/>
         </div>
 
         <div class="barra-horizontal"></div>
@@ -141,8 +148,28 @@ export default {
     botonVue,
     inputVue,
     footerVue,
+  },
+  data: function () {
+    return {
+      form: {
+        name: '',
+        email: '',
+        phone: '',
+        message: '',
+      }
+    }
+  },
+  methods: {
+    async sendForm() {
+      await useFetch('/api/leads', {
+      method: 'post',
+      body: { name: this.form.name , email: this.form.email , phone: this.form.phone , message: this.form.message }
+    })
   }
-}
+  }
+    
+  }
+
 </script>
 
 <style>
@@ -284,6 +311,26 @@ body {
   margin-left: 10px;
   margin-right: 20px;
 }
+.enero {
+  background-color: green;
+  position: inherit;
+  width: 170.5px;
+  margin-top: -58px;
+  border-radius: 3px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+.enero p {
+  color: white;
+}
+.textarea {
+  display: grid;
+}
+textarea {
+  outline: none;
+}
+.contenedor-boton {
+  margin-top: 20px;
+}
 @media (min-width: 768px) and (max-width: 1023px) {
   .contenedor-boton {
     text-align: center;
@@ -372,6 +419,16 @@ body {
   }
   .texto-nosotros {
     width: 70%;
+  }
+  .enero {
+    position: absolute;
+    width: 240.5px;
+    text-align: center;
+    margin-left: 32px;
+    margin-top: -55px;
+  }
+  .contenedor-boton {
+    margin-top: 20px;
   }
 }
 </style>
