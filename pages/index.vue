@@ -20,7 +20,7 @@
           <boton-vue/>
         </div>
         <div>
-          <img src="" alt="img" class="imagen-nosotros">
+          <img src="../assets/horno.jpeg" alt="img" class="imagen-nosotros">
         </div>
       </div>
 
@@ -46,7 +46,7 @@
             <p class="nombre-servicio">Temple al vacio</p>
           </div>
           <div class="carta">
-            <img src="../assets/templealvacio.png" class="imagen-servicios">
+            <img src="../assets/revelado.png" class="imagen-servicios-revelado">
             <p class="nombre-servicio">Revelado de esfuerzos</p>
           </div>
           <div class="carta">
@@ -64,28 +64,6 @@
         </div>
       </div>
 
-      <div class="hornos">
-        <div>
-            <div class="servicios">
-              <div>
-                <h1>servicio 1</h1>
-                  <p>Dscripcion del servicio</p>
-                  <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit.fugiat deleniti.</p>
-                  <p>Caracteristica 1: Nombre del modelo</p>
-                  <p>Caracteristica 2: Nombre del modelo</p>
-                  <p>Caracteristica 3: Nombre del modelo</p>
-                </div>
-              <div>
-                <img src="" alt="img1">
-              </div>
-            </div>
-            <div>2</div>
-            <div>3</div>
-            <div>4</div>
-        </div>
-      </div>
-
-      
       <h1 class="titulo-contacto">Contáctanos</h1>
 
       <div class="contacto">
@@ -116,8 +94,8 @@
           <div>
             <h1>Llámanos</h1>
             <div class="contenedor-icono-texto-contacto">
-              <img src="" alt="img" class="icono-contacto">
-              <p>442-226-9331</p>
+              <img src="../assets/call.png" alt="img" class="icono-contacto-call">
+              <p class="telefono">442-226-9331</p>
             </div>
           </div>
           <div>
@@ -177,6 +155,7 @@ body {
 }
 .titulo-servicios {
   text-align: center;
+  color: #181E52;
 }
 .texto-nosotros {
   line-height: 28px;
@@ -292,6 +271,19 @@ body {
 .imagen-servicios {
   width: 170px;
 }
+.imagen-servicios-revelado {
+  height: 231.567px;
+  width: 170px;
+  border-radius: 5px;
+}
+.icono-contacto-call {
+  height: 20px;
+  margin-top: 15px;
+}
+.telefono {
+  margin-left: 10px;
+  margin-right: 20px;
+}
 @media (min-width: 768px) and (max-width: 1023px) {
   .contenedor-boton {
     text-align: center;
@@ -354,6 +346,32 @@ body {
   .contenedor-servicios {
     padding: 50px;
   }
-  
+  .imagen-servicios-revelado {
+    height: 326.567px;
+    width: 240px;
+  }
+  .imagen-nosotros {
+    display: block;
+    height: 400px;
+    margin-top: 35px;
+  }
+  .contenedor-acerca-de-nosotros {
+    display: flex;
+    width: 85%;
+    margin: auto;
+    padding-top: 60px;
+  }
+  .logo {
+    width: 295px;
+  }
+  .icono-tiempo:hover {
+    transform: scale(1.4);
+  }
+  .icono-ecologico:hover {
+    transform: scale(1.4);
+  }
+  .texto-nosotros {
+    width: 70%;
+  }
 }
 </style>

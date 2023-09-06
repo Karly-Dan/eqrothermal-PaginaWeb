@@ -4,7 +4,6 @@
             <div>
                 <img src="../assets/logost.png" alt="imagen" class="logo-header">
             </div>
-            
         </div>
     </main>
 </template>
@@ -24,6 +23,7 @@ export default {
 .logo-header {
     width: 160px;
 }
+
 @media (max-width: 776px) {
 
 }
