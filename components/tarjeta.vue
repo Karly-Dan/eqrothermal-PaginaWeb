@@ -36,14 +36,12 @@ export default {
   max-width: 160px;
 }
 @media (min-width: 1024px) {
-  .imagen-servicios {
-    max-width: 250px;
-  }
+  
   .carta {
     margin-bottom: 170px !important;
   }
   .nombre-servicio {
-    top: 85% !important;
+    top: 77% !important;
   }
 }
 
