@@ -160,12 +160,19 @@ export default {
     }
   },
   methods: {
-    async sendForm() {
-      await useFetch('/api/leads', {
-      method: 'post',
-      body: { name: this.form.name , email: this.form.email , phone: this.form.phone , message: this.form.message }
-    })
-  }
+    sendForm() {
+      useFetch('/api/leads', {
+        method: 'post',
+        body: { 
+          name: this.form.name, 
+          email: this.form.email, 
+          phone: this.form.phone, 
+          message: this.form.message 
+        }
+      });
+      console.log("mensaje");
+      alert ("Recibimos tus datos, en breve nos comunicaremos contigo.");
+    }
   }
     
   }
