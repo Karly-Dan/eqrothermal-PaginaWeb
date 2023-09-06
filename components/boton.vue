@@ -1,6 +1,6 @@
 <template>
   <div class="contenedor-boton">
-    <button>Ver servicios</button>
+    <button >Enviar</button>
   </div>
 </template>
 
@@ -21,6 +21,7 @@ button {
   border: transparent;
   text-align: center;
   font-weight: bold;
+  cursor: pointer;
 }
 .contenedor-boton {
   text-align: center;
