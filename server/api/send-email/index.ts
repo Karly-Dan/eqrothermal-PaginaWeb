@@ -9,7 +9,7 @@ export default defineEventHandler(async (event) => {
     to: body.to,
     from: config.SENDGRID_EMAIL_FROM,
     subject: body.subject,
-    html: await ejs.renderFile( new URL (`../../assets/emails/templates/${body.template}.ejs`, import.meta.url).pathname, body),
+    html: await ejs.renderFile( new URL (`../../assets/emails/templates/${body.template}.ejs`, import.meta.url).pathname, { ...body, base_url: config.APP_URL}),
   })
 
   return { body }

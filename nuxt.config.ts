@@ -4,5 +4,6 @@ export default defineNuxtConfig({
   runtimeConfig: {
     SENDGRID_API_KEY: process.env.SENDGRID_API_KEY,
     SENDGRID_EMAIL_FROM: process.env.SENDGRID_EMAIL_FROM,
+    APP_URL: process.env.APP_URL,
   },
 })
