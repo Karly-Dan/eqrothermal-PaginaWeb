@@ -47,7 +47,7 @@
 </style>
 <body>
     <header>
-        <img src="../../logo.png" alt="" class="logo">
+        <img src="<%= base_url + '/favicon.ico' %>" alt="" class="logo">
     </header>
     <div class="titulo">
         <h1>Datos de Contacto</h1>
@@ -56,15 +56,15 @@
         <div>
             <div class="contenedor-datos">
                 <h1 class="titulo-correo"><img src="../../usuario.png" alt=""> Nombre</h1>
-                <p class="respuesta">Karla Daniela Rivera Hernandez</p>
+                <p class="respuesta"><%= name %></p>
             </div>
             <div class="contenedor-datos">
                 <h1 class="titulo-correo"><img src="../../correo.png" alt=""> Correo</h1>
-                <p class="respuesta">Karla Daniela Rivera Hernandez</p>
+                <p class="respuesta"><%= email %></p>
             </div>
             <div class="contenedor-datos">
                 <h1 class="titulo-correo"><img src="../../llamada.png" alt=""> Telefono</h1>
-                <p class="respuesta">Karla Daniela Rivera Hernandez</p>
+                <p class="respuesta"><%= phone %></p>
             </div>
             <div class="contenedor-datos">
                 <h1 class="titulo-correo"><img src="../../conversacion.png" alt=""> Mensaje</h1>
