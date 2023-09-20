@@ -109,7 +109,7 @@
             <h1>Envíanos un email</h1>
             <div class="contenedor-icono-texto-contacto">
               <img src="../assets/mail.png" alt="img" class="icono-mail">
-              <a href="mailto:ventas@eqrothermal.com" target="_blank" class="mail">ventas@eqrothermal.com</a>
+              <a href="mailto:info@eqrothermal.com" target="_blank" class="mail">ventas@eqrothermal.com</a>
             </div>
           </div>
           <div>
@@ -168,6 +168,18 @@ export default {
           email: this.form.email, 
           phone: this.form.phone, 
           message: this.form.message 
+        }
+      });
+      useFetch('/api/send-email', {
+        method: 'post',
+        body: { 
+          subject: "Prueba subject",
+          to: "tech@eqrothermal.com",
+          template: "contact",
+          name: this.form.name,
+          email: this.form.email,
+          phone: this.form.phone,
+          message: this.form.message
         }
       });
       console.log("mensaje");
@@ -325,7 +337,6 @@ body {
   left: 0;
   right: 0;
   border-radius: 3px;
-  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 .proximo {
   color: white;
