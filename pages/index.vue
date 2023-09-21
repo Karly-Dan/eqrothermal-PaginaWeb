@@ -46,7 +46,7 @@
           </div>
           <div class="carta">
             <img src="../assets/revelado.png" class="imagen-servicios-revelado">
-            <p class="nombre-servicio">Revelado de esfuerzos</p>
+            <p class="nombre-servicio">Relevado de esfuerzos</p>
           </div>
           <div class="carta">
             <img src="../assets/recocido.png" class="imagen-servicios">
