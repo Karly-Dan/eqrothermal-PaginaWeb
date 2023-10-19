@@ -109,7 +109,7 @@
             <h1>Envíanos un email</h1>
             <div class="contenedor-icono-texto-contacto">
               <img src="../assets/mail.png" alt="img" class="icono-mail">
-              <a href="mailto:info@eqrothermal.com" target="_blank" class="mail">ventas@eqrothermal.com</a>
+              <a href="mailto:info@eqrothermal.com" target="_blank" class="mail">info@eqrothermal.com</a>
             </div>
           </div>
           <div>
@@ -173,8 +173,8 @@ export default {
       useFetch('/api/send-email', {
         method: 'post',
         body: { 
-          subject: "Prueba subject",
-          to: "tech@eqrothermal.com",
+          subject: "Información",
+          to: "info@eqrothermal.com",
           template: "contact",
           name: this.form.name,
           email: this.form.email,
