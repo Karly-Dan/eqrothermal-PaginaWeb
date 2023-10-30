@@ -173,7 +173,7 @@ export default {
       useFetch('/api/send-email', {
         method: 'post',
         body: { 
-          subject: "Información",
+          subject: "Encuesta pagina web",
           to: "info@eqrothermal.com",
           template: "contact",
           name: this.form.name,
