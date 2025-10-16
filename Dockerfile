@@ -33,8 +33,15 @@ COPY --from=build /app/.output ./.output
 # If your build externalizes some deps, install them from .output/server/package.json
 # Copy npm config if present (optional)
 COPY .npmrc ./.npmrc
-RUN npm --prefix .output/server ci --omit=dev && rm -f .npmrc \
-	&& chown -R node:node .output
+RUN if [ -f .output/server/package.json ]; then \
+			if [ -f .output/server/package-lock.json ]; then \
+				npm --prefix .output/server ci --omit=dev; \
+			else \
+				npm --prefix .output/server install --omit=dev --no-audit --no-fund; \
+			fi; \
+		fi \
+		&& rm -f .npmrc \
+		&& chown -R node:node .output
 
 # Run as non-root user provided by the Node image
 USER node
