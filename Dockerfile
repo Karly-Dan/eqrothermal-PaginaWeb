@@ -27,6 +27,9 @@ ENV PORT=3000
 # Expose the port that Nitro listens on
 EXPOSE 3000
 
+# Copy package.json so launchers that run `npm start` don't fail
+COPY package.json ./package.json
+
 # Copy the generated, self-contained Nitro output
 COPY --from=build /app/.output ./.output
 
