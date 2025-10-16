@@ -1,57 +1,23 @@
 # syntax=docker/dockerfile:1
 
-# --- Base image ---
-FROM node:20-alpine AS base
+FROM node:20-alpine
 WORKDIR /app
 
-# --- Dependencies stage ---
-FROM base AS deps
-# Copy lockfiles to install exact dependencies
+# Instala TODAS las dependencias (incluye dev) para asegurar que Nuxt esté disponible
+ENV NPM_CONFIG_PRODUCTION=false \
+    HOST=0.0.0.0 \
+    PORT=3000 \
+    NODE_ENV=production
+
+# Instala deps primero para cachear
 COPY package.json package-lock.json .npmrc ./
-ENV NODE_ENV=development \
-	NPM_CONFIG_PRODUCTION=false
-RUN npm ci --include=dev --ignore-scripts
+RUN npm install --include=dev --ignore-scripts
 
-# --- Build stage ---
-FROM deps AS build
-# Copy the rest of the source code
+# Copia el resto del código y ejecuta los scripts y el build
 COPY . .
-# Build Nuxt (Nitro) output
-ENV NODE_ENV=production
-RUN npm run postinstall --if-present
-RUN npm run build
+RUN npm run postinstall --if-present && npm run build
 
-# --- Runtime stage ---
-FROM node:20-alpine AS runner
-WORKDIR /app
-ENV NODE_ENV=production
-ENV HOST=0.0.0.0
-ENV PORT=3000
-
-# Expose the port that Nitro listens on
 EXPOSE 3000
 
-# Copy package.json so launchers that run `npm start` don't fail
-COPY package.json ./package.json
-
-# Copy the generated, self-contained Nitro output
-COPY --from=build /app/.output ./.output
-
-# If your build externalizes some deps, install them from .output/server/package.json
-# Copy npm config if present (optional)
-COPY .npmrc ./.npmrc
-RUN if [ -f .output/server/package.json ]; then \
-			if [ -f .output/server/package-lock.json ]; then \
-				npm --prefix .output/server ci --omit=dev; \
-			else \
-				npm --prefix .output/server install --omit=dev --no-audit --no-fund; \
-			fi; \
-		fi \
-		&& rm -f .npmrc \
-		&& chown -R node:node .output
-
-# Run as non-root user provided by the Node image
-USER node
-
-# Start the Nitro server
+# Soporta plataformas que llaman `npm start`
 CMD ["node", ".output/server/index.mjs"]
