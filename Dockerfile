@@ -8,13 +8,16 @@ WORKDIR /app
 FROM base AS deps
 # Copy lockfiles to install exact dependencies
 COPY package.json package-lock.json .npmrc ./
-RUN npm ci
+ENV NODE_ENV=development \
+	NPM_CONFIG_PRODUCTION=false
+RUN npm ci --include=dev
 
 # --- Build stage ---
 FROM deps AS build
 # Copy the rest of the source code
 COPY . .
 # Build Nuxt (Nitro) output
+ENV NODE_ENV=production
 RUN npm run build
 
 # --- Runtime stage ---
