@@ -10,7 +10,7 @@ FROM base AS deps
 COPY package.json package-lock.json .npmrc ./
 ENV NODE_ENV=development \
 	NPM_CONFIG_PRODUCTION=false
-RUN npm ci --include=dev
+RUN npm ci --include=dev --ignore-scripts
 
 # --- Build stage ---
 FROM deps AS build
@@ -18,6 +18,7 @@ FROM deps AS build
 COPY . .
 # Build Nuxt (Nitro) output
 ENV NODE_ENV=production
+RUN npm run postinstall --if-present
 RUN npm run build
 
 # --- Runtime stage ---

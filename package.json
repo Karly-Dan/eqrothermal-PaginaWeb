@@ -7,7 +7,7 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "start": "node .output/server/index.mjs",
-    "postinstall": "nuxt prepare"
+    "postinstall": "node -e \"try{require.resolve('nuxt/package.json');process.exit(0)}catch(e){process.exit(1)}\" && npx nuxt prepare || true"
   },
   "devDependencies": {
     "@nuxt/devtools": "latest",
