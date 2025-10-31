@@ -11,12 +11,12 @@
   },
   "devDependencies": {
     "@nuxt/devtools": "latest",
-    "nuxt": "^3.7.0"
+    "nuxt": "^4.2.0"
   },
   "dependencies": {
-    "@sendgrid/mail": "^7.7.0",
-    "ejs": "^3.1.9",
-    "firebase": "^10.3.1",
-    "firebase-admin": "^11.10.1"
+    "@sendgrid/mail": "^8.1.6",
+    "ejs": "^3.1.10",
+    "firebase": "^12.5.0",
+    "firebase-admin": "^13.5.0"
   }
 }
