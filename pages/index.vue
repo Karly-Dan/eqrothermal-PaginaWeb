@@ -172,14 +172,16 @@ export default {
       });
       useFetch('/api/send-email', {
         method: 'post',
-        body: { 
+        body: {
           subject: "Encuesta pagina web",
           to: "info@eqrothermal.com",
           template: "contact",
-          name: this.form.name,
-          email: this.form.email,
-          phone: this.form.phone,
-          message: this.form.message
+          data: {
+            name: this.form.name,
+            email: this.form.email,
+            phone: this.form.phone,
+            message: this.form.message,
+          }
         }
       });
       console.log("mensaje");
