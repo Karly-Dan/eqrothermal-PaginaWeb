@@ -1,23 +1,41 @@
-# syntax=docker/dockerfile:1
-
-FROM node:20-alpine
+# Etapa 1: dependencias
+FROM node:20-alpine AS deps
 WORKDIR /app
 
-# Instala TODAS las dependencias (incluye dev) para asegurar que Nuxt esté disponible
-ENV NPM_CONFIG_PRODUCTION=false \
-    HOST=0.0.0.0 \
-    PORT=3000 \
-    NODE_ENV=production
+# Copiamos solo los manifiestos primero (mejor caché)
+COPY package*.json ./
 
-# Instala deps primero para cachear
-COPY package.json package-lock.json .npmrc ./
-RUN npm install --include=dev --ignore-scripts
+# Instalamos todas las dependencias (incluye devDependencies necesarias para el build)
+RUN npm ci --no-audit --no-fund
 
-# Copia el resto del código y ejecuta los scripts y el build
+# Etapa 2: build Nuxt (genera .output)
+FROM node:20-alpine AS builder
+WORKDIR /app
+ENV NODE_ENV=development
+ENV NUXT_TELEMETRY_DISABLED=1
+
+# Copiamos node_modules desde deps
+COPY --from=deps /app/node_modules ./node_modules
+# Copiamos el resto del código fuente
 COPY . .
-RUN npm run postinstall --if-present && npm run build
 
+# Prepara y construye (postinstall se ejecutó ya como parte de npm ci si aplica)
+RUN npm run build
+
+# Etapa 3: runtime mínimo (SSR)
+FROM node:20-alpine AS runner
+WORKDIR /app
+ENV NODE_ENV=production
+ENV PORT=3000
+ENV HOST=0.0.0.0
+ENV NUXT_TELEMETRY_DISABLED=1
+
+# Copiamos solo la salida generada
+COPY --from=builder /app/.output ./.output
+
+# Exponemos el puerto
 EXPOSE 3000
+USER node
 
-# Soporta plataformas que llaman `npm start`
+# Comando de arranque (Nitro / Node preset)
 CMD ["node", ".output/server/index.mjs"]
