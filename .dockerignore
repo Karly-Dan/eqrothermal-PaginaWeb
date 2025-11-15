@@ -1,18 +1,17 @@
-# Dependencies
+# Directorios que no deben ir al contexto del build
 node_modules
-npm-debug.log
-yarn-error.log
-
-# Local env and config
-.env
-.env.*
 .nuxt
+dist
 .output
-
 # VCS
 .git
 .gitignore
-
-# Editor/OS
-.vscode
-.DS_Store
+# Config & env
+.env
+.env.*
+# Logs / debug
+npm-debug.log*
+# Docker / compose
+Dockerfile
+Dockerfile.static
+docker-compose.yml
