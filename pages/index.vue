@@ -174,7 +174,7 @@ export default {
         method: 'post',
         body: {
           subject: "Encuesta pagina web",
-          to: "info@eqrothermal.com",
+          to: "vikoss.yiss@gmail.com",
           template: "contact",
           data: {
             name: this.form.name,
