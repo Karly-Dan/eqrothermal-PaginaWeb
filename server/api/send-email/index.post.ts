@@ -14,18 +14,23 @@ export default defineEventHandler(async (event) => {
 
   const config = useRuntimeConfig()
 
-  const fileUrl = new URL(
-    `../../assets/emails/templates/${body.template}.ejs`,
-    import.meta.url
-  )
+  // Lee el template empaquetado por Nitro (ver nuxt.config.ts → nitro.serverAssets)
+  const templateFile = `emails/${body.template}.ejs`
+  const buf = await useStorage('assets:server').getItem(templateFile)
 
-  const html = await ejs.renderFile(
-    fileUrl.pathname,
-    {
-      ...body.data || {},
-      base_url: config.public.APP_URL
-    }
-  )
+  if (!buf) {
+    throw createError({
+      statusCode: 500,
+      statusMessage: `Email template not found: ${templateFile}`
+    })
+  }
+
+  const templateStr = Buffer.isBuffer(buf) ? buf.toString('utf8') : String(buf)
+
+  const html = ejs.render(templateStr, {
+    ...(body.data || {}),
+    base_url: config.public.APP_URL
+  })
 
   const result = await email.send({
     to: body.to,
